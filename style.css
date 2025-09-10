@@ -1,0 +1,354 @@
+/* Make skill cards clickable and remove default link styles */
+.skill-link {
+	text-decoration: none;
+	display: inline-block;
+	border-radius: 10px;
+}
+.skill-link:focus {
+	outline: 2px solid #4fc3f7;
+	outline-offset: 2px;
+}
+/* Skills grid layout for better visual appearance */
+.skills-grid {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 18px;
+	margin: 0 auto;
+	max-width: 700px;
+}
+.skill-card {
+	display: flex;
+	align-items: center;
+	background: linear-gradient(135deg, #0a1a0a 60%, #00ff4130 100%);
+	border-radius: 10px;
+	box-shadow: 0 1px 8px #00ff4130;
+	padding: 10px 18px 10px 10px;
+	min-width: 120px;
+	margin: 0;
+	font-size: 1.05em;
+	font-weight: 500;
+	transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+	border: 1.5px solid #00ff41;
+	color: #00ff41;
+	text-shadow: 0 0 6px #00ff41;
+}
+.skill-card:hover {
+	transform: translateY(-3px) scale(1.04);
+	box-shadow: 0 4px 24px #00ff41;
+	background: #001a00;
+	border-color: #00ff41;
+}
+.skill-card span {
+	margin-left: 6px;
+	color: #00ff41;
+	letter-spacing: 0.5px;
+	text-shadow: 0 0 6px #00ff41;
+}
+.skill-icon {
+	width: 28px;
+	height: 28px;
+	vertical-align: middle;
+	margin-right: 8px;
+	border-radius: 5px;
+	object-fit: contain;
+	background: #fff;
+	border: 1px solid #e0e0e0;
+}
+
+/* Basic reset for consistent spacing */
+body {
+	margin: 0;
+	font-family: 'Courier New', Courier, monospace;
+	background: #0a0f0a;
+	color: #00ff41;
+	position: relative;
+	min-height: 100vh;
+	overflow-x: hidden;
+}
+
+/* Matrix-style animated background using CSS only */
+/* ---------- MATRIX: full-screen, responsive, CSS-only ---------- */
+
+/* ensure page content forms a stacking context above the background */
+.navbar,
+.bio-section,
+.skills-section,
+.projects-section {
+  position: relative;  /* required so z-index works */
+  z-index: 2;
+}
+
+/* two overlapping pseudo-layers that tile and scroll vertically */
+/* Ensure sections are above the background */
+.navbar,
+.bio-section,
+.skills-section,
+.projects-section {
+  position: relative;
+  z-index: 2;
+}
+
+/* MATRIX BACKGROUND */
+/* Ensure content is above the background */
+.navbar,
+.bio-section,
+.skills-section,
+.projects-section {
+  position: relative;
+  z-index: 2;
+}
+
+/* MATRIX BACKGROUND - vertical streams */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  /* make it a repeating vertical gradient of 0s/1s */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      #00ff41 0,
+      #00ff41 2px,
+      transparent 2px,
+      transparent 20px
+    );
+  background-size: 2ch 40px; /* width of a stream, height of repeating digits */
+  opacity: 0.15;
+
+  animation: matrix-fall 6s linear infinite;
+}
+
+/* second layer for depth */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      #00ff41 0,
+      #00ff41 1px,
+      transparent 1px,
+      transparent 20px
+    );
+  background-size: 2ch 40px;
+  opacity: 0.08;
+
+  animation: matrix-fall 10s linear infinite;
+  animation-delay: -5s; /* staggered start */
+}
+
+/* continuous downward scroll */
+@keyframes matrix-fall {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+
+/* Matrix binary background canvas */
+#matrix-bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	z-index: 0;
+	pointer-events: none;
+}
+
+
+/* Navbar styles */
+.navbar {
+	background: #222;
+	padding: 10px 0;
+	box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.navbar ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	justify-content: center;
+	gap: 30px;
+}
+.navbar a {
+	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.1em;
+	transition: color 0.2s;
+}
+.navbar a:hover {
+	color: #00ff41;
+	text-shadow: 0 0 10px #00ff41, 0 0 4px #00ff41;
+}
+
+/* Bio section styles */
+.bio-section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: linear-gradient(135deg, #0a1a0a 60%, #00ff4130 100%);
+	padding: 40px 20px 30px 20px;
+	margin: 30px auto 20px auto;
+	max-width: 600px;
+	border-radius: 12px;
+	box-shadow: 0 1px 8px #00ff4130;
+	border: 1.5px solid #00ff41;
+	color: #00ff41;
+	text-align: center;
+	text-shadow: 0 0 6px #00ff41;
+	transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+}
+
+.bio-section:hover {
+	transform: translateY(-3px) scale(1.02);
+	box-shadow: 0 4px 24px #00ff41;
+	background: #001a00;
+}
+
+.bio-photo {
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 18px;
+	border: 3px solid #00ff41;
+	box-shadow: 0 0 12px #00ff41;
+}
+
+.bio-text h1 {
+	margin: 0 0 12px 0;
+	font-size: 2em;
+	color: #00ff41;
+	text-shadow: 0 0 8px #00ff41;
+}
+
+.bio-text p {
+	margin: 0;
+	font-size: 1.05em;
+	color: #b6ffb6;
+	text-shadow: 0 0 3px #00ff41;
+}
+
+/* Skills section styles */
+.skills-section {
+	background: linear-gradient(135deg, #0a1a0a 60%, #003a00 100%);
+	padding: 30px 0 20px 0;
+	text-align: center;
+	z-index: 2;
+	border-top: 2px solid #00ff41;
+	border-bottom: 2px solid #00ff41;
+}
+.skills-section h2 {
+	margin-bottom: 15px;
+	color: #00ff41;
+	text-shadow: 0 0 8px #00ff41;
+	z-index: 2;
+}
+.skills-list {
+	display: inline-block;
+	padding: 0;
+	margin: 0;
+}
+.skills-list li {
+	display: inline-block;
+	background: #fff;
+	color: #1976d2;
+	border: 1px solid #90caf9;
+	border-radius: 20px;
+	padding: 8px 18px;
+	margin: 5px;
+	font-size: 1em;
+}
+
+/* Projects section styles */
+.projects-section {
+	background: linear-gradient(135deg, #0a1a0a 60%, #003a00 100%);
+	padding: 35px 0 40px 0;
+	text-align: center;
+	z-index: 2;
+	border-top: 2px solid #00ff41;
+}
+.projects-section h2 {
+	color: #00ff41;
+	margin-bottom: 20px;
+	text-shadow: 0 0 8px #00ff41;
+	z-index: 2;
+}
+.project-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 24px;
+}
+
+.project-card {
+	background: linear-gradient(135deg, #0a1a0a 60%, #00ff4130 100%);
+	border-radius: 12px;
+	box-shadow: 0 1px 8px #00ff4130;
+	padding: 16px;
+	width: 260px;
+	min-height: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+	border: 1.5px solid #00ff41;
+	color: #00ff41;
+	text-shadow: 0 0 6px #00ff41;
+}
+
+.project-card:hover {
+	transform: translateY(-3px) scale(1.04);
+	box-shadow: 0 4px 24px #00ff41;
+	background: #001a00;
+	border-color: #00ff41;
+}
+
+.project-img {
+	width: 100%;
+	height: 140px;
+	object-fit: contain;
+	border-radius: 8px;
+	margin-bottom: 12px;
+	background: #fff;
+}
+
+.project-card h3 {
+	margin: 0 0 10px 0;
+	color: #00ff41;
+	font-size: 1.2em;
+	text-shadow: 0 0 6px #00ff41;
+}
+
+.project-card p {
+	margin: 0;
+	color: #b6ffb6;
+	font-size: 0.95em;
+	line-height: 1.4;
+	text-shadow: 0 0 2px #00ff41;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 700px) {
+	.bio-section {
+		max-width: 95%;
+		padding: 25px 5px 20px 5px;
+	}
+	.project-list {
+		flex-direction: column;
+		align-items: center;
+	}
+	.project-card {
+		width: 90vw;
+		max-width: 320px;
+	}
+}
